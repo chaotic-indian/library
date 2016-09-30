@@ -25,24 +25,25 @@ session_start();
     <div class="content_wrapper">
    <p align="right"> <a href="javascript:history.go(-1)">previous page</a> || <a href="admin.php">admin</a></p>
       <h1>Library Administrator Portal</h1>
-      <form id="form1" name="form1" method="post" action="">
-        <table align="center" cellpadding="5" cellspacing="0">
+      <form id="form1" name="form1" method="post" action="book_option_session.php">
+        <table cellpadding="5" cellspacing="0">
           <tr>
-            <td colspan="2" align="center">SELECT THE NAME OF PERSON TO RETURN</td>
+            <td width="111">&nbsp;</td>
+            <td colspan="2">&nbsp;</td>
           </tr>
           <tr>
-            <td width="71">Name</td>
-            <td width="210"><label>
-              <?php require ('../include/inc_return.php')?>
+            <td>Select Criteria </td>
+            <td width="165"><label>
+              <select name="criteria" id="criteria">
+                <option value="null">Select Criteria</option>
+                <option value="author">View by Author</option>
+                <option value="publisher">View by Publisher</option>
+                <option value="subject">View by Subject</option>
+              </select>
             </label></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td><div id="txttitle"></div></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td width="308"><label>
+              <input type="submit" name="Submit" value="Submit" />
+            </label></td>
           </tr>
         </table>
       </form>

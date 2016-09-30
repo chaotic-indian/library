@@ -1,13 +1,7 @@
 <?php 
 ob_start();
 session_start ();
-require ('connections/connect.php');
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    echo "Welcome to the library, " . $_SESSION['username'] . "!";
-} else {
-    echo "Please log in first to see this page.";
-}
-
+require ('../connections/connect.php'); 
  // username and password sent from form
 $username= $_POST['username'];
 $password=$_POST['password'];
@@ -19,8 +13,8 @@ $username = mysql_real_escape_string($username);
 $password = mysql_real_escape_string($password);
 
 // check if supplied details exist
-$result=mysql_query("SELECT * FROM users WHERE name='$username' 
-AND password='$password'") or die(mysql_error());
+$result=mysql_query("SELECT * FROM admin WHERE username='admin' 
+AND password='mylibrary'") or die(mysql_error());
 
 // Mysql_num_row is counting table row
 $count=mysql_num_rows($result);
@@ -34,7 +28,7 @@ if($count==1){
 	$_SESSION['user_log'] = $id;
 	$_SESSION['username'] = $name;
 	
-	header("location:search_form_process.php");
+	header("location:admin.php");
 }
 else {
 	echo "Wrong Username or Password click <a href = 'login.php'>here</a> to go back";

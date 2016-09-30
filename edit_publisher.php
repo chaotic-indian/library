@@ -2,7 +2,6 @@
 <?php
 session_start();
 
-}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -25,28 +24,52 @@ session_start();
     <div class="content_wrapper">
    <p align="right"> <a href="javascript:history.go(-1)">previous page</a> || <a href="admin.php">admin</a></p>
       <h1>Library Administrator Portal</h1>
-      <form id="form1" name="form1" method="post" action="">
-        <table align="center" cellpadding="5" cellspacing="0">
-          <tr>
-            <td colspan="2" align="center">SELECT THE NAME OF PERSON TO RETURN</td>
-          </tr>
-          <tr>
-            <td width="71">Name</td>
-            <td width="210"><label>
-              <?php require ('../include/inc_return.php')?>
-            </label></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td><div id="txttitle"></div></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-        </table>
-      </form>
-      <p>&nbsp;</p><p><!-- Content wrapper div ends here-->
+<p>MAKE SURE YOU FILL ALL THE FIELDS.</p>
+<p>
+  <?php
+//start session
+//session_start();
+
+ $publisher_id=$_REQUEST['id'];
+ 
+ $_SESSION['publisher_id'] = $publisher_id;
+ //connect to database
+ 
+require ('../connections/connect.php');
+$sql= "SELECT * FROM publisher WHERE publisher_id = '$publisher_id' " or die(mysql_error());
+$result= mysql_query($sql)or die(mysql_error());
+
+//get result
+
+while($row=mysql_fetch_array($result)){
+//$author_id= $row['author_id'];		
+$publisher_name= $row['publisher_name'];
+
+//echo $author_id ;
+
+?>
+</p>
+<form action="update_publisher_process.php" method="post" name="form1" id="form1">
+  <table>
+    <tr>
+      <td width="181">&nbsp;</td>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>EDIT PUBLISHER </td>
+      <td width="242"><label>
+        <input type="hidden" name="id" value="<?php echo $publisher_id ; ?>" />
+        <input name="publisher_name" type="text" id="publisher_name" value="<?php echo $publisher_name; ?>" />
+      </label></td>
+      <td width="161"><label>
+        <input type="submit" name="Submit" value="Edit" />
+      </label></td>
+    </tr>
+  </table>
+</form>
+<?php };?>
+ 
+<p><!-- Content wrapper div ends here-->
   
   <!-- Right wrapper div starts here-->
 </p>

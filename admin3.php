@@ -1,4 +1,8 @@
-<?php session_start();?>
+
+<?php
+session_start();
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,7 +31,7 @@ function MM_validateForm() { //v4.0
 
 <body>
 <div class="wrapper">
-<?php include("top.php"); ?>  
+<?php include("top.php");?>  
   <!-- Main wrapper div starts here-->
   <div class="main_wrapper">
   
@@ -62,9 +66,10 @@ function MM_validateForm() { //v4.0
     
     <!-- Right wrapper div starts here-->
       <div id="side_bar">
-      </div>
+	<?php include("admin2.php");?>      
+    </div>
     <!-- Right wrapper div ends here-->
-                  <div class="clr"></div>
+<div class="clr"></div>
         <div><img src="../images/edge_bottom.jpg" border="0" /></div>
   </div>
   <p>
